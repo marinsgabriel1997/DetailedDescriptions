@@ -19,7 +19,7 @@ namespace DetailedDescriptions
             if (!Context.IsWorldReady)
                 return;
 
-            this.Monitor.Log($"{Game1.player.Name} pressed {e.Button}.", LogLevel.Debug);
+            this.Monitor.Log($"{Game1.player.Name} pressionou {e.Button}.", LogLevel.Debug);
         }
     }
 }
