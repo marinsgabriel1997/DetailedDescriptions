@@ -1,47 +1,33 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewValley;
-using StardewValley.GameData.Crops; // Necessário para o tipo CropData
+using StardewValley.GameData.Objects;
+using Newtonsoft.Json; // Certifique-se de que você tenha o Newtonsoft.Json disponível no projeto
 
 namespace DetailedDescriptions
 {
     internal sealed class ModEntry : Mod
     {
-        // Variável para armazenar os dados dos cultivos
-        private Dictionary<string, CropData> cropData;
-
         public override void Entry(IModHelper helper)
         {
-            // Inscreve-se no evento SaveLoaded, que é chamado quando um jogo salvo é carregado
-            helper.Events.GameLoop.SaveLoaded += GameLoop_SaveLoaded;
-        }
+            // Carrega os dados de objetos no Entry para iterar e encontrar o item com SpriteIndex 472
+            Dictionary<string, ObjectData> objectData = this.Helper.GameContent.Load<Dictionary<string, ObjectData>>("Data/Objects");
 
-        // Método chamado quando o jogo salvo é carregado
-        private void GameLoop_SaveLoaded(object? sender, SaveLoadedEventArgs e)
-        {
-            // Carregar os dados dos cultivos usando o tipo correto (CropData)
-            cropData = Game1.content.Load<Dictionary<string, CropData>>("Data/Crops");
+            this.Monitor.Log("Iterando sobre os objetos para encontrar o item com SpriteIndex 472...", LogLevel.Debug);
 
-            if (cropData != null && cropData.Count > 0)
+            foreach (var entry in objectData)
             {
-                this.Monitor.Log("Iniciando leitura de crops.", LogLevel.Debug);
-
-                // Exibe as informações de cada cultivo
-                foreach (var crop in cropData)
+                // Verifica se o SpriteIndex do item é 472
+                if (entry.Value.SpriteIndex == 472)
                 {
-                    string cropId = crop.Key;
-                    CropData cropInfo = crop.Value;
+                    this.Monitor.Log($"Item encontrado: {entry.Key}", LogLevel.Debug);
 
-                    // Exibir as informações do cultivo no console do SMAPI
-                    this.Monitor.Log($"Crop ID: {cropId}, Nome: {cropInfo.HarvestItemId}, Estações: {string.Join(", ", cropInfo.Seasons)}", LogLevel.Info);
+                    // Converte o objeto ObjectData para JSON e imprime os dados brutos
+                    string jsonData = JsonConvert.SerializeObject(entry.Value, Formatting.Indented);
+                    this.Monitor.Log($"Dados brutos do item (JSON): {jsonData}", LogLevel.Debug);
+
+                    return;
                 }
-            }
-            else
-            {
-                this.Monitor.Log("Nenhum dado de cultivo encontrado!", LogLevel.Warn);
             }
         }
     }
