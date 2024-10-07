@@ -3,6 +3,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley.GameData.Objects;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace DetailedDescriptions
 {
@@ -10,58 +11,58 @@ namespace DetailedDescriptions
     {
         public override void Entry(IModHelper helper)
         {
-            // Carrega os dados de objetos no Entry para iterar e encontrar o item com SpriteIndex 472
-            Dictionary<string, ObjectData> objectData = this.Helper.GameContent.Load<Dictionary<string, ObjectData>>("Data/Objects");
-
-            this.Monitor.Log("Iterando sobre os objetos para encontrar o item com SpriteIndex 472...", LogLevel.Debug);
-
-            foreach (var entry in objectData)
-            {
-                // Verifica se o SpriteIndex do item é 472 (Parsnip Seeds)
-                if (entry.Value.SpriteIndex == 472)
-                {
-                    this.Monitor.Log($"Item encontrado: {entry.Key}", LogLevel.Debug);
-
-                    // Converte o objeto ObjectData para JSON e imprime os dados brutos antes da alteração
-                    string jsonDataAntes = JsonConvert.SerializeObject(entry.Value, Formatting.Indented);
-                    this.Monitor.Log($"Dados brutos do item (antes da alteração): {jsonDataAntes}", LogLevel.Debug);
-
-                    // === Alterando a descrição do item ===
-                    entry.Value.Description = "Testando nova descrição no objeto";
-
-                    // Converte o objeto alterado para JSON e imprime os dados brutos após a alteração
-                    string jsonDataDepois = JsonConvert.SerializeObject(entry.Value, Formatting.Indented);
-                    this.Monitor.Log($"Dados brutos do item (após a alteração): {jsonDataDepois}", LogLevel.Debug);
-
-                    break;
-                }
-            }
-
-            // Registra o evento para interceptar o carregamento do arquivo Strings/Objects
             helper.Events.Content.AssetRequested += OnAssetRequested;
         }
 
-        // Método chamado quando o arquivo Strings/Objects é solicitado
         private void OnAssetRequested(object sender, AssetRequestedEventArgs e)
         {
-            // Verifica se o arquivo solicitado é Strings/Objects
-            if (e.NameWithoutLocale.IsEquivalentTo("Strings/Objects"))
-            {
+            if (e.NameWithoutLocale.IsEquivalentTo("Data/Objects"))
+            {                
                 e.Edit(asset =>
                 {
-                    // Carrega os dados do arquivo Strings/Objects
-                    var data = asset.AsDictionary<string, string>().Data;
+                    var data = asset.AsDictionary<string, ObjectData>().Data;
 
-                    // Verifica se a chave "ParsnipSeeds_Description" existe
-                    if (data.ContainsKey("ParsnipSeeds_Description"))
+                    int count = 0;
+
+                    this.Monitor.Log("Iterando sobre Data/Objects", LogLevel.Debug);
+
+                    foreach (var entry in data)
                     {
-                        // Altera a descrição localizada para "Testando nova descrição"
-                        data["ParsnipSeeds_Description"] = "brasil";
-                        this.Monitor.Log("Descrição de Parsnip Seeds alterada para 'Testando nova descrição localizada'", LogLevel.Debug);
+                        count++;
+
+                        if (count > 2)
+                        {
+                            break; // Interrompe o loop após processar o segundo item
+                        }
+
+                        this.Monitor.Log($"=== Propriedades do item com chave: {entry.Key}:", LogLevel.Debug);
+
+                        var objData = entry.Value;
+
+                        this.Monitor.Log($"Name: {objData.Name}", LogLevel.Debug);
+                        this.Monitor.Log($"DisplayName: {objData.DisplayName}", LogLevel.Debug);
+                        this.Monitor.Log($"Description: {objData.Description}", LogLevel.Debug);
+                        this.Monitor.Log($"Type: {objData.Type}", LogLevel.Debug);
+                        this.Monitor.Log($"Category: {objData.Category}", LogLevel.Debug);
+                        this.Monitor.Log($"Price: {objData.Price}", LogLevel.Debug);
+                        this.Monitor.Log($"SpriteIndex: {objData.SpriteIndex}", LogLevel.Debug);
+                        this.Monitor.Log($"Edibility: {objData.Edibility}", LogLevel.Debug);
+                        this.Monitor.Log($"CanBeGivenAsGift: {objData.CanBeGivenAsGift}", LogLevel.Debug);
+                    }
+
+                    
+                    if (data.ContainsKey("472"))
+                    {
+                        this.Monitor.Log("Alterando a descrição de 'Parsnip Seeds' (ID 472)", LogLevel.Debug);
+                        this.Monitor.Log($"Descrição original de 'Parsnip Seeds' (ID 472): {data["472"].Description}", LogLevel.Debug);
+
+                        data["472"].Description = "Nova descrição para as sementes de Parsnip.";
+
+                        this.Monitor.Log($"Nova descrição de 'Parsnip Seeds' (ID 472): {data["472"].Description}", LogLevel.Debug);
                     }
                     else
                     {
-                        this.Monitor.Log("Chave 'ParsnipSeeds_Description' não encontrada.", LogLevel.Warn);
+                        this.Monitor.Log("Item com ID 472 (Parsnip Seeds) não encontrado em Data/Objects.", LogLevel.Warn);
                     }
                 });
             }
