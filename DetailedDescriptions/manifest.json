@@ -6,5 +6,5 @@
   "UniqueID": "gbaeriel.DetailedDescriptions",
   "EntryDll": "DetailedDescriptions.dll",
   "MinimumApiVersion": "4.0.0",
-  "UpdateKeys": []
+  "UpdateKeys": ["Nexus:28472"]
 }
