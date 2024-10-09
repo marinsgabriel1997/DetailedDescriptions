@@ -1,0 +1,16 @@
+{
+  "season": "계절",
+  "season.spring": "봄",
+  "season.summer": "여름",
+  "season.fall": "가을",
+  "season.winter": "겨울",
+  "harvestInDays": "{{days}}일 후 수확",
+  "needsReplanting": "다시 심어야 함",
+  "regrowInDays": "{{days}}일 후 재성장",
+  "buyPrice": "구매: {{price}}g",
+  "sellPrice": "판매: {{price}}g",
+  "profitPerCycle": "재배 주기당 수익 ({{totalDays}}일):",
+  "harvests": "수확: {{count}}",
+  "profit": "수익: {{value}}g",
+  "profitability": "수익성 (높을수록 좋음): {{rate}}"
+}

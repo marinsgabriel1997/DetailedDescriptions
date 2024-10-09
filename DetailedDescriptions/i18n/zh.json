@@ -1,0 +1,16 @@
+{
+  "season": "季节",
+  "season.spring": "春季",
+  "season.summer": "夏季",
+  "season.fall": "秋季",
+  "season.winter": "冬季",
+  "harvestInDays": "{{days}}天后收获",
+  "needsReplanting": "需要重新种植",
+  "regrowInDays": "{{days}}天后再生",
+  "buyPrice": "购买: {{price}}g",
+  "sellPrice": "出售: {{price}}g",
+  "profitPerCycle": "每个种植周期利润（{{totalDays}}天）:",
+  "harvests": "收获次数: {{count}}",
+  "profit": "利润: {{value}}g",
+  "profitability": "盈利性（越高越好）: {{rate}}"
+}

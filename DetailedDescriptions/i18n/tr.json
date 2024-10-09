@@ -1,0 +1,16 @@
+{
+  "season": "Mevsim",
+  "season.spring": "İlkbahar",
+  "season.summer": "Yaz",
+  "season.fall": "Sonbahar",
+  "season.winter": "Kış",
+  "harvestInDays": "{{days}} gün içinde hasat",
+  "needsReplanting": "Yeniden ekilmesi gerekiyor",
+  "regrowInDays": "{{days}} gün içinde yeniden büyür",
+  "buyPrice": "Satın al: {{price}}g",
+  "sellPrice": "Sat: {{price}}g",
+  "profitPerCycle": "Her ekim döngüsü için kâr ({{totalDays}} gün):",
+  "harvests": "Hasatlar: {{count}}",
+  "profit": "Kâr: {{value}}g",
+  "profitability": "Kârlılık (Ne kadar büyükse o kadar iyi): {{rate}}"
+}

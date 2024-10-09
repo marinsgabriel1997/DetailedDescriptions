@@ -1,0 +1,16 @@
+{
+  "season": "Évszak",
+  "season.spring": "Tavasz",
+  "season.summer": "Nyár",
+  "season.fall": "Ősz",
+  "season.winter": "Tél",
+  "harvestInDays": "Aratás {{days}} nap múlva",
+  "needsReplanting": "Újraültetés szükséges",
+  "regrowInDays": "{{days}} nap múlva újranő",
+  "buyPrice": "Vásárlás: {{price}}g",
+  "sellPrice": "Eladás: {{price}}g",
+  "profitPerCycle": "Nyereség ciklusonként ({{totalDays}} nap):",
+  "harvests": "Betakarítások: {{count}}",
+  "profit": "Nyereség: {{value}}g",
+  "profitability": "Jövedelmezőség (Minél nagyobb, annál jobb): {{rate}}"
+}

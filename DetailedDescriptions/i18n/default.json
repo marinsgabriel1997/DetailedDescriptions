@@ -1,0 +1,16 @@
+{
+  "season": "Season",
+  "season.spring": "Spring",
+  "season.summer": "Summer",
+  "season.fall": "Fall",
+  "season.winter": "Winter",
+  "harvestInDays": "Harvest in {{days}} days",
+  "needsReplanting": "Needs to be replanted",
+  "regrowInDays": "Regrows in {{days}} days",
+  "buyPrice": "Buy: {{price}}g",
+  "sellPrice": "Sell: {{price}}g",
+  "profitPerCycle": "Profit per planting cycle ({{totalDays}} days):",
+  "harvests": "Harvests: {{count}}",
+  "profit": "Profit: {{value}}g",
+  "profitability": "Profitability (Bigger is better): {{rate}}"
+}

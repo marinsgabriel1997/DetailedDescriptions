@@ -80,20 +80,42 @@ namespace DetailedDescriptions
                                 // Calcular rentabilidade
                                 double profitability = total_work > 0 ? (double)profit_cycle / total_work : 0;
 
-                                // Converte a lista de estações para uma string
-                                string seed_seasons_string = string.Join(", ", cropData.Seasons);
+                                // Obtém as estações do cultivo (ex.: "Spring", "Summer", etc.)
+                                List<StardewValley.Season> seasons = cropData.Seasons;
 
-                                // Cria uma nova descrição com base nos cálculos
+                                // Converte cada estação em uma string (usando ToString)
+                                string[] seasonNames = seasons
+                                    .Select(season => season.ToString()) // Usa ToString para obter o nome da estação
+                                    .ToArray(); // Converte a lista para array de strings
+
+                                // Traduz cada nome de estação usando o sistema de tradução do SMAPI
+                                string translatedSeasonsString = string.Join(", ", seasonNames.Select(name => this.Helper.Translation.Get($"season.{name}")));
+
+                                // Cria a descrição final com as estações traduzidas
+                                string seasonDescription = $"{this.Helper.Translation.Get("season")}: {translatedSeasonsString}.";
+                                string harvestInDaysDescription = this.Helper.Translation.Get("harvestInDays", new { days = seed_daysinphase_sum });
+                                string regrowDescription = (cropData.RegrowDays == -1
+                                    ? this.Helper.Translation.Get("needsReplanting")
+                                    : this.Helper.Translation.Get("regrowInDays", new { days = cropData.RegrowDays }));
+                                string buyPriceDescription = this.Helper.Translation.Get("buyPrice", new { price = seed_buy_value });
+                                string sellPriceDescription = this.Helper.Translation.Get("sellPrice", new { price = harvestObject.Price });
+
+                                // Informações de lucro por ciclo
+                                string profitPerCycleDescription = this.Helper.Translation.Get("profitPerCycle", new { totalDays = total_cycle_days });
+                                string harvestsDescription = this.Helper.Translation.Get("harvests", new { count = harvests });
+                                string profitDescription = this.Helper.Translation.Get("profit", new { value = profit_cycle });
+                                string profitabilityDescription = this.Helper.Translation.Get("profitability", new { rate = profitability.ToString("F2") });
+
+                                // Combinando tudo em uma única string
                                 string newDescription = (
-                                    $"Season: {seed_seasons_string}.\n" +
-                                    $"Harvest in {seed_daysinphase_sum} days. " +
-                                    $"{(cropData.RegrowDays == -1 ? "Needs to be replanted." : $"Then every {cropData.RegrowDays} days.")}\n" +
-                                    $"Buy: {seed_buy_value}g.\n" +
-                                    $"Sell: {harvestObject.Price}g.\n\n" +
-                                    $"Profit per planting cycle ({total_cycle_days} days):\n" +
-                                    $"Harvests: {harvests}.\n" +
-                                    $"Profit: {profit_cycle}g.\n\n" +
-                                    $"Profitability (Bigger is better): {profitability:F2}"
+                                    seasonDescription + "\n" +
+                                    harvestInDaysDescription + " " + regrowDescription + "\n" +
+                                    buyPriceDescription + "\n" +
+                                    sellPriceDescription + "\n\n" +
+                                    profitPerCycleDescription + "\n" +
+                                    harvestsDescription + "\n" +
+                                    profitDescription + "\n\n" +
+                                    profitabilityDescription
                                 );
 
                                 // Modifica a descrição no Strings/Objects usando a chave extraída

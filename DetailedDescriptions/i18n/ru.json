@@ -1,0 +1,16 @@
+{
+  "season": "Сезон",
+  "season.spring": "Весна",
+  "season.summer": "Лето",
+  "season.fall": "Осень",
+  "season.winter": "Зима",
+  "harvestInDays": "Сбор урожая через {{days}} дней",
+  "needsReplanting": "Необходимо пересаживать",
+  "regrowInDays": "Повторный рост через {{days}} дней",
+  "buyPrice": "Покупка: {{price}}g",
+  "sellPrice": "Продажа: {{price}}g",
+  "profitPerCycle": "Прибыль за цикл посадки ({{totalDays}} дней):",
+  "harvests": "Урожай: {{count}}",
+  "profit": "Прибыль: {{value}}g",
+  "profitability": "Рентабельность (Чем больше, тем лучше): {{rate}}"
+}

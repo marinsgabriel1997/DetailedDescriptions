@@ -1,0 +1,16 @@
+{
+  "season": "Estação",
+  "season.spring": "Primavera",
+  "season.summer": "Verão",
+  "season.fall": "Outono",
+  "season.winter": "Inverno",
+  "harvestInDays": "Colheita em {{days}} dias",
+  "needsReplanting": "Precisa ser replantado",
+  "regrowInDays": "Rebrota em {{days}} dias",
+  "buyPrice": "Comprar: {{price}}g",
+  "sellPrice": "Vender: {{price}}g",
+  "profitPerCycle": "Lucro por ciclo de plantio ({{totalDays}} dias):",
+  "harvests": "Colheitas: {{count}}",
+  "profit": "Lucro: {{value}}g",
+  "profitability": "Rentabilidade (Quanto maior, melhor): {{rate}}"
+}

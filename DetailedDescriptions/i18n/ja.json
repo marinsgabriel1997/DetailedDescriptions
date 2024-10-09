@@ -1,0 +1,16 @@
+{
+  "season": "季節",
+  "season.spring": "春",
+  "season.summer": "夏",
+  "season.fall": "秋",
+  "season.winter": "冬",
+  "harvestInDays": "{{days}}日で収穫",
+  "needsReplanting": "再植が必要",
+  "regrowInDays": "{{days}}日で再生",
+  "buyPrice": "購入: {{price}}g",
+  "sellPrice": "販売: {{price}}g",
+  "profitPerCycle": "植え付けサイクルごとの利益（{{totalDays}}日間）:",
+  "harvests": "収穫: {{count}}",
+  "profit": "利益: {{value}}g",
+  "profitability": "収益性（高いほど良い）: {{rate}}"
+}
