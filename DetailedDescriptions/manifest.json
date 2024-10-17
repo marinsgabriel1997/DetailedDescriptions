@@ -1,7 +1,7 @@
 {
   "Name": "DetailedDescriptions",
   "Author": "Gbaeriel",
-  "Version": "1.0.1",
+  "Version": "1.1.0",
   "Description": "Provides more detailed descriptions for items, initially focusing on seeds.",
   "UniqueID": "gbaeriel.DetailedDescriptions",
   "EntryDll": "DetailedDescriptions.dll",

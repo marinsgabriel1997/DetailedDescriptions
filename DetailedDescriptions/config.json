@@ -1,3 +1,4 @@
 {
-  "NumberOfCrops": 1
+  "NumberOfCrops": 10,
+  "Profit":  false
 }
