@@ -1,5 +1,8 @@
 ﻿public sealed class ModConfig
 {
+    /// <summary>Quantidade de sementes para o calculo de lucro por ciclo de plantio</summary>
+    public int TotalSeeds { get; set; } = 8;
+
     /// <summary>Exibir a descrição original do item.</summary>
     public bool ShowOriginalDescription { get; set; } = true;
 
@@ -23,4 +26,7 @@
 
     /// <summary>Exibir a descrição da rentabilidade (taxa de lucro) por ciclo.</summary>
     public bool ShowProfitabilityDescription { get; set; } = true;
+
+    /// <summary>Exibir a descrição sobre crescimento em uma treliça</summary>
+    public bool ShowIsRaised { get; set; } = true;
 }
