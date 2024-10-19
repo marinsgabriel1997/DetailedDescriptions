@@ -1,78 +1,83 @@
-# Detailed Descriptions - Stardew Valley Mod
+# Better Detailed Descriptions - Stardew Valley Mod
 
-### About the Mod
+## About the Mod
 
-**Detailed Descriptions** is a mod created to provide more informative and detailed descriptions for seeds and crops in Stardew Valley. The goal is to help players make more informed decisions about which crops to plant by presenting information such as profitability, growing seasons, and details about replanting or crop regeneration. This way, the player can maximize farm efficiency and have a better understanding of the costs and benefits of each seed.
+*Better Detailed Descriptions* is a mod designed to provide more comprehensive and informative descriptions for seeds and crops in [Stardew Valley](https://www.nexusmods.com/stardewvalley). The goal is to help players make informed decisions about which crops to plant by offering detailed insights into aspects such as profitability, growing seasons, seed purchase costs, and whether crops require replanting or regrow after harvest. With this information, players can optimize their farm’s efficiency and better understand the costs and benefits associated with each seed.
 
-### Features
+Additionally, the mod is compatible with other mods that modify seed descriptions, ensuring that all seed descriptions—including those from custom mods—are enhanced with the same level of detail. Compatibility has been validated with popular mods such as [Cornucopia](https://www.nexusmods.com/stardewvalley/mods/19508) and [Stardew Valley Expanded](https://www.nexusmods.com/stardewvalley/mods/3753).
 
-- **Detailed Information**: Each seed will receive a detailed description that includes:
-  - The seasons in which it can be planted.
-  - The number of days it takes to reach the initial harvest.
-  - Whether it requires replanting or regenerates after harvest.
-  - Purchase price of the seeds and selling price of the crops.
-  - Estimated number of harvests during the full season cycle, including consecutive cycles (e.g., 56 days if the seed can be planted in two consecutive seasons).
-  - Profitability calculated per cycle, taking into account costs and the amount of work required.
-- **Automatic Translations**: Season information and other data are automatically translated, leveraging SMAPI's translation system.
+## Features
 
-### How It Works
+- **In-Depth Information**: Every seed in the game will now feature a detailed description, including:
+  - The seasons in which the crop can be planted.
+  - The number of days until the initial harvest.
+  - Whether the crop requires replanting or regrows after each harvest.
+  - Purchase price of seeds and sell price of the harvested crop.
+  - Estimated number of harvests within the full growing season (including across consecutive seasons, such as a 56-day span for crops that grow across Spring and Summer).
+  - Profit per cycle, factoring in seed costs, selling prices, and workload.
+- **Profitability Index**: A detailed profitability calculation for each planting cycle, allowing players to gauge the efficiency of their crop selection.
+- **Automatic Translations**: All season information and other relevant data are automatically translated using SMAPI’s built-in translation system, adapting to the language set in the game. The translations are pulled from the files located in the `Mods/BetterDetailedDescriptions/i18n` folder.
+- **Customization Options**: Through compatibility with the [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098), players can customize which details are shown in the descriptions, including:
+  - Displaying original item descriptions.
+  - Showing planting season information.
+  - Displaying seed prices, harvest prices, and profitability per planting cycle.
+  - Whether to include information about trellis requirements for crops that need support.
 
-This mod uses SMAPI events to intercept the relevant data files from Stardew Valley, such as `Data/Crops`, `Data/Objects`, and `Strings/Objects`. It then automatically calculates various statistics about each crop, including:
+## How It Works
 
-- How many days the plant takes to grow.
-- How many times the crop can be harvested during a season.
-- The profit per cycle considering the seed cost and the selling price.
+This mod utilizes SMAPI events to intercept and dynamically modify data files from *Stardew Valley*, such as *Data/Crops*, *Data/Objects*, and *Strings/Objects*. It then calculates various statistics about each crop, such as:
 
-The resulting description is generated dynamically, providing a clear view of the crop's profitability and characteristics.
+1. The time it takes for the plant to reach harvest stage.
+2. The total number of harvests possible in a given season.
+3. Profit per planting cycle, including costs for seeds and profits from selling the crops.
 
-### How to Install
+The descriptions are dynamically generated based on this data, providing players with a clear and informative overview of each crop's profitability and characteristics.
 
-1. **Requirements**:
+## How to Install
 
-   - Stardew Valley 1.6.
-   - [SMAPI 4.0.8](https://smapi.io/).
+### Requirements:
+- Stardew Valley 1.6+
+- SMAPI 4.0.8+
+- Generic Mod Config Menu
 
-2. **Installation**:
+### Installation:
+1. Download the *Better Detailed Descriptions* mod from [NexusMods](https://www.nexusmods.com/stardewvalley/mods/28472).
+2. Extract the content of the zip file into your Stardew Valley Mods folder, or use the Nexus Mod Manager for easy installation.
+3. Launch the game through SMAPI to enable the mod.
 
-   - Download the Detailed Descriptions mod from the [NexusMods page](https://www.nexusmods.com/stardewvalley/mods/28472).
-   - Extract the content of the zip file to your Stardew Valley `Mods` folder, or alternatively, use the Nexus Mod Manager to manage the installation.
-   - Launch the game through SMAPI.
+## How to Use
 
-### How to Use
+Once installed, the mod automatically updates all seed descriptions in the game. Simply access your inventory or browse the seed catalog at a shop, and you will see the new detailed descriptions for each crop, helping you make informed choices about what to plant.
 
-After installation, the mod will automatically modify seed descriptions in the game. Just access the inventory or purchase catalog, and you will see the new detailed descriptions for each crop item.
+## Translation
 
-### Translation
+The mod’s descriptions, including season and crop details, are automatically translated into the language of the game you are playing. Translation files are located in the `Mods/BetterDetailedDescriptions/i18n` folder. While the translations are generated using AI, contributions to improve them are always welcome!
 
-Season information and other details are automatically translated to the language you are playing in. The translation files are located in the `Mods/DetailedDescriptions/i18n` folder. Please note that the translations were generated using AI and may contain errors. Contributions to improve the translations are welcome! The translation files are located in the `Mods/DetailedDescriptions/i18n` folder. The mod currently supports the following languages:
+Supported languages:
+- German (de.json)
+- English (default.json)
+- Spanish (es.json)
+- French (fr.json)
+- Hungarian (hu.json)
+- Italian (it.json)
+- Japanese (ja.json)
+- Korean (ko.json)
+- Portuguese (pt.json)
+- Russian (ru.json)
+- Turkish (tr.json)
+- Chinese (zh.json)
 
-- German (`de.json`)
-- Default (`default.json`)
-- Spanish (`es.json`)
-- French (`fr.json`)
-- Hungarian (`hu.json`)
-- Italian (`it.json`)
-- Japanese (`ja.json`)
-- Korean (`ko.json`)
-- Portuguese (`pt.json`)
-- Russian (`ru.json`)
-- Turkish (`tr.json`)
-- Chinese (`zh.json`)
+## Contribution and Feedback
 
-### Contribution and Feedback
+- **Bugs and Suggestions**: If you find any bugs or have suggestions for improvement, feel free to open an issue on the mod’s GitHub repository.
+- **Contributions**: Pull requests are welcome! Whether you want to improve the code or add new features, your contributions are encouraged.
 
-- **Bugs and Suggestions**: If you encounter any bugs or have suggestions for improvements, please open a new issue in the [GitHub repository](https://github.com/gbaeriel/DetailedDescriptions/issues).
-- **Contributions**: Pull requests are welcome! If you’d like to improve the code or add new features, feel free to contribute.
+## Credits
 
-### Credits
+- **Creator**: Gabriel de Marins
+- **Framework**: SMAPI by Pathoschild  
+- **Mod Configuration Menu**: *Generic Mod Config Menu* by spacechase0
 
-- **Creator**: Gabriel de Marins (nickname for projects: Gbaeriel).
-- **Framework**: [SMAPI](https://smapi.io/) by Pathoschild.
+## License
 
-### License
-
-This project is licensed under the GPL-3.0 License. This means that any modification or redistribution of this code must always remain open source, ensuring that it stays free and available to everyone. See the LICENSE file for more details.
-
----
-
-I hope this mod helps optimize your farm and that you can get the most profit from your crops! Enjoy!
+This project is licensed under the GPL-3.0 License. This ensures that any modification or redistribution of the code remains open-source, keeping it free and available to the community.
