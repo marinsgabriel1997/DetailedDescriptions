@@ -164,10 +164,12 @@ namespace BetterDetailedDescriptions
                     int total_cycle_days = cropData.Seasons.Count * 28;
                     int harvests = cropData.RegrowDays == -1 ? total_cycle_days / seed_daysinphase_sum : 1 + ((total_cycle_days - seed_daysinphase_sum) / cropData.RegrowDays);
                     int seed_buy_value = seedObject.Price * 2;
-                    int profit_cycle = (harvests * harvestObject.Price * totalSeedsConfig) - (seed_buy_value * totalSeedsConfig);
-                    int total_work = cropData.RegrowDays == -1 ? harvests * 2 : harvests; // Cálculo do trabalho total (colheitas e replantios)                    
-                    double profitability = total_work > 0 ? ((double)profit_cycle / totalSeedsConfig) / total_work : 0; // Calcular rentabilidade                   
-                    List<StardewValley.Season> seasons = cropData.Seasons; // Obtém as estações do cultivo (ex.: "Spring", "Summer", etc.)                                     
+                    //int profit_cycle = (harvests * harvestObject.Price * totalSeedsConfig) - (seed_buy_value * totalSeedsConfig);
+                    int seed_cost_total = cropData.RegrowDays == -1 ? harvests * seed_buy_value * totalSeedsConfig : seed_buy_value * totalSeedsConfig;
+                    int profit_cycle = (harvests * harvestObject.Price * totalSeedsConfig) - seed_cost_total;
+                    int total_work = cropData.RegrowDays == -1 ? harvests * 2 : harvests; // Cálculo do trabalho total (colheitas e replantios)
+                    double profitability = total_work > 0 ? ((double)profit_cycle / totalSeedsConfig) / total_work : 0; // Calcular rentabilidade
+                    List<StardewValley.Season> seasons = cropData.Seasons; // Obtém as estações do cultivo (ex.: "Spring", "Summer", etc.)
                     string[] seasonNames = seasons
                         .Select(season => season.ToString()) // Usa ToString para obter o nome da estação
                         .ToArray(); // Converte a lista para array de strings                   

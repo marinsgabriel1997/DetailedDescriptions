@@ -1,7 +1,7 @@
 {
   "Name": "Better Detailed Descriptions",
   "Author": "Gbaeriel",
-  "Version": "2.0.1",
+  "Version": "2.0.2",
   "Description": "Enhances the in-game item descriptions by providing detailed statistics for seeds and crops, including planting seasons, growth time, regrowth periods, harvest yields, and profitability calculations.",
   "UniqueID": "gbaeriel.BetterDetailedDescriptions",
   "EntryDll": "BetterDetailedDescriptions.dll",
