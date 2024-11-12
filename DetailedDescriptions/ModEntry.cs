@@ -113,6 +113,15 @@ namespace BetterDetailedDescriptions
                 setValue: value => this.Config.ShowSellPriceDescription = value
             );
 
+            // Show how many crops are harvested per harvest
+            configMenu.AddBoolOption(
+                mod: this.ModManifest,
+                name: () => this.Helper.Translation.Get("option.showHarvestAverageStack.name"),
+                tooltip: () => this.Helper.Translation.Get("option.showHarvestAverageStack.tooltip"),
+                getValue: () => this.Config.ShowHarvestAverageStackDescription,
+                setValue: value => this.Config.ShowHarvestAverageStackDescription = value
+            );
+
             // Exibir a descrição do lucro por ciclo
             configMenu.AddBoolOption(
                 mod: this.ModManifest,
@@ -166,7 +175,19 @@ namespace BetterDetailedDescriptions
                     int seed_buy_value = seedObject.Price * 2;
                     //int profit_cycle = (harvests * harvestObject.Price * totalSeedsConfig) - (seed_buy_value * totalSeedsConfig);
                     int seed_cost_total = cropData.RegrowDays == -1 ? harvests * seed_buy_value * totalSeedsConfig : seed_buy_value * totalSeedsConfig;
-                    int profit_cycle = (harvests * harvestObject.Price * totalSeedsConfig) - seed_cost_total;
+                    int harvestMinStack = cropData.HarvestMinStack;
+                    if (harvestMinStack == 0) // Can be "0" for some modded seeds for some reason, so fall back to "1" instead
+                    {
+                        harvestMinStack = 1;
+                    }
+                    int harvestMaxStack = cropData.HarvestMaxStack;
+                    if (harvestMaxStack < harvestMinStack) // Can be not set (i.e. for "cranberries"), in which case game will default to "1" so we need to overwrite it to be equal to harvestMinStack
+                    {
+                        harvestMaxStack = harvestMinStack;
+                    }
+                    double extraHarvestChance = cropData.ExtraHarvestChance;
+                    double harvestAverageStack = (harvestMinStack + harvestMaxStack) / 2 + extraHarvestChance;
+                    double profit_cycle = (harvests * harvestObject.Price * totalSeedsConfig * harvestAverageStack) - seed_cost_total;
                     int total_work = cropData.RegrowDays == -1 ? harvests * 2 : harvests; // Cálculo do trabalho total (colheitas e replantios)
                     double profitability = total_work > 0 ? ((double)profit_cycle / totalSeedsConfig) / total_work : 0; // Calcular rentabilidade
                     List<StardewValley.Season> seasons = cropData.Seasons; // Obtém as estações do cultivo (ex.: "Spring", "Summer", etc.)
@@ -209,6 +230,21 @@ namespace BetterDetailedDescriptions
                         string isRaisedDescription = this.Helper.Translation.Get("isRaised");
                         newDescription.Add(isRaisedDescription);
                     }
+                    
+                    if (Config.ShowHarvestAverageStackDescription)
+                    {
+                        string countValue = harvestMinStack.ToString();
+                        if (harvestMinStack != harvestMaxStack)
+                        {
+                            countValue += " - " + harvestMaxStack;
+                        }
+                        if (extraHarvestChance > 0)
+                        {
+                            countValue += " + " + extraHarvestChance.ToString("P0");
+                        }
+                        string harvestAverageStackDescription = this.Helper.Translation.Get("harvestAverageStack", new { count = countValue });
+                        newDescription.Add(harvestAverageStackDescription);
+                    }
 
                     if (Config.ShowBuyPriceDescription)
                     {
@@ -228,7 +264,7 @@ namespace BetterDetailedDescriptions
                         newDescription.Add("");
                         string profitPerCycleDescription = this.Helper.Translation.Get("profitPerCycle", new { totalDays = total_cycle_days, totalSeeds = totalSeedsConfig });
                         string harvestsDescription = this.Helper.Translation.Get("harvests", new { count = harvests });
-                        string profitDescription = this.Helper.Translation.Get("profit", new { value = profit_cycle });
+                        string profitDescription = this.Helper.Translation.Get("profit", new { value = profit_cycle.ToString("F2") });
                         newDescription.Add(profitPerCycleDescription);
                         newDescription.Add(harvestsDescription);
                         newDescription.Add(profitDescription);

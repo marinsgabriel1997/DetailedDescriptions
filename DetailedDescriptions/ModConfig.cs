@@ -12,6 +12,9 @@
     /// <summary>Exibir a descrição dos dias necessários para colheita.</summary>
     public bool ShowHarvestInDaysDescription { get; set; } = true;
 
+    /// <summary>Show how many crops are harvested per harvest</summary>
+    public bool ShowHarvestAverageStackDescription { get; set; } = true;
+
     /// <summary>Exibir a descrição sobre a necessidade de replantio ou o tempo de regeneração.</summary>
     public bool ShowRegrowDescription { get; set; } = true;
 
