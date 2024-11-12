@@ -185,7 +185,8 @@ namespace BetterDetailedDescriptions
                     {
                         harvestMaxStack = harvestMinStack;
                     }
-                    double harvestAverageStack = (harvestMinStack + harvestMaxStack) / 2 + cropData.ExtraHarvestChance;
+                    double extraHarvestChance = cropData.ExtraHarvestChance;
+                    double harvestAverageStack = (harvestMinStack + harvestMaxStack) / 2 + extraHarvestChance;
                     double profit_cycle = (harvests * harvestObject.Price * totalSeedsConfig * harvestAverageStack) - seed_cost_total;
                     int total_work = cropData.RegrowDays == -1 ? harvests * 2 : harvests; // Cálculo do trabalho total (colheitas e replantios)
                     double profitability = total_work > 0 ? ((double)profit_cycle / totalSeedsConfig) / total_work : 0; // Calcular rentabilidade
@@ -232,7 +233,16 @@ namespace BetterDetailedDescriptions
                     
                     if (Config.ShowHarvestAverageStackDescription)
                     {
-                        string harvestAverageStackDescription = this.Helper.Translation.Get("harvestAverageStack", new { count = harvestAverageStack.ToString("F2") });
+                        string countValue = harvestMinStack.ToString();
+                        if (harvestMinStack != harvestMaxStack)
+                        {
+                            countValue += " - " + harvestMaxStack;
+                        }
+                        if (extraHarvestChance > 0)
+                        {
+                            countValue += " + " + extraHarvestChance.ToString("P0");
+                        }
+                        string harvestAverageStackDescription = this.Helper.Translation.Get("harvestAverageStack", new { count = countValue });
                         newDescription.Add(harvestAverageStackDescription);
                     }
 
